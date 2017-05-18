@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">House energy optimization</string>
+    <string name="nameApp">House\nEnergy\nOptimization</string>
+    <string name="BtnGoToMySets">Продовжити</string>
+    <string name="NotToShow">Більше не показувати</string>
+    <string name="title_activity_my_sets">Мої набори</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="mySets">Мої набори</string>
+    <string name="baseOfDevices">База приладів</string>
+    <string name="statisticsOfDevices">Статистика приладів</string>
+    <string name="calculatorCosts">Калькулятор витрат</string>
+    <string name="moneyOfMounth">Сума в місяць</string>
+    <string name="Optimization">Оптимізувати</string>
+    <string name="UAN">грн</string>
+    <string name="change">Змінити</string>
+</resources>
