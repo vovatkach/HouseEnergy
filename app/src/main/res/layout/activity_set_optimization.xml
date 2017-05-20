@@ -29,9 +29,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Набір 1"
                 android:textSize="18sp"
                 android:textColor="@color/colorWhite"/>
+            <ImageView
+                android:id="@+id/ivAddDeviceSetOptimizationAct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_add"
+                android:layout_gravity="end"
+                android:layout_margin="5dp"
+                />
         </FrameLayout>
     </android.support.v7.widget.Toolbar>
     <LinearLayout
@@ -48,6 +55,7 @@
            android:layout_weight="1"/>
 
         <EditText
+            android:id="@+id/etCostOfOptimization"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -55,7 +63,7 @@
             android:inputType="number"
             android:textColor="@color/colorWhite"
             android:textSize="18sp"
-            android:maxLength="5"/>
+            android:maxLength="6"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,6 +75,7 @@
     </LinearLayout>
     <Button
         style="@style/Widget.AppCompat.Button.Colored"
+        android:id="@+id/btnGoOptimization"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"

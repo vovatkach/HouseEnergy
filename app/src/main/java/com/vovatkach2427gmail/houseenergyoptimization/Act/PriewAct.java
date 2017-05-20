@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -12,7 +13,12 @@ import android.widget.ImageView;
 
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
+import com.vovatkach2427gmail.houseenergyoptimization.DB.Translator;
+import com.vovatkach2427gmail.houseenergyoptimization.Model.Device;
 import com.vovatkach2427gmail.houseenergyoptimization.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PriewAct extends AppCompatActivity {
     CarouselView carouselView;
@@ -60,5 +66,18 @@ public class PriewAct extends AppCompatActivity {
 
             }
         });
+        //-------------------------------
+        /*
+        List<Device> devices=new ArrayList<>();
+        devices.add(new Device(1,"Телевізор","улюблений",20,2,4,24));
+        devices.add(new Device(1,"Ноутбук","робочий",15,5,5,24));
+        devices.add(new Device(1,"Пральна машина","потрібна",10,1,1,24));
+        devices.add(new Device(1,"Лампа","романтична",1,2,5,10));
+        devices.add(new Device(1,"Пилосос","новий",1,2,1,3));
+        devices.add(new Device(1,"Холодильний","тата",15,2,10,24));
+        Log.d("myLog", Translator.listOfDevivesToJson(devices));
+        */
     }
+
+
 }

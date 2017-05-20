@@ -34,12 +34,28 @@ public class DataBaseWorker {
             int listOfDevice=cursor.getColumnIndex(Contact.TABLE_SET.LIST_OF_DEVICE);
             do
             {
-               sets.add(new Set(cursor.getInt(idColIndex),cursor.getString(nameColIndex),cursor.getString(listOfDevice)));
+               sets.add(new Set(cursor.getInt(idColIndex),cursor.getString(nameColIndex),Translator.fromJsonToListOfDevice(cursor.getString(listOfDevice))));
             }while (cursor.moveToNext());
         }
         db.close();
         return sets;
     }
+    //--------------------------------------------------------------------
+    public Set getSet(int idSet)
+    {
+        Set set;
+        SQLiteDatabase db=myDataBaseHelper.getReadableDatabase();
+        Cursor cursor=db.query(Contact.TABLE_SET.TABLE_NAME,null,Contact.TABLE_SET.ID+" = ?",new String[]{Integer.toString(idSet)},null,null,null);
+        if(cursor.moveToFirst())
+        {
+            int idColIndex=cursor.getColumnIndex(Contact.TABLE_SET.ID);
+            int nameColIndex=cursor.getColumnIndex(Contact.TABLE_SET.NAME);
+            int listOfDevice=cursor.getColumnIndex(Contact.TABLE_SET.LIST_OF_DEVICE);
+            set=new Set(cursor.getInt(idColIndex),cursor.getString(nameColIndex),Translator.fromJsonToListOfDevice(cursor.getString(listOfDevice)));
+        } else set=new Set(0,null,null);
+        return set;
+    }
+    //---------------------------------------------------------------------
     public List<Device> getAllDevices()
     {
         ArrayList<Device> devices=new ArrayList<>();
@@ -55,7 +71,7 @@ public class DataBaseWorker {
             int tMinColIndex=cursor.getColumnIndex(Contact.TABLE_DEVICE.T_MIN);
             int tMaxColIndex=cursor.getColumnIndex(Contact.TABLE_DEVICE.T_MAX);
             do {
-                devices.add(new Device(cursor.getString(nameColIndex),Double.parseDouble(cursor.getString(powerConsumptionColIndex)),cursor.getInt(priorityColIndex),cursor.getInt(tMinColIndex),cursor.getInt(tMaxColIndex),cursor.getString(extraInfoColIndex),cursor.getInt(idColIndex)));
+                devices.add(new Device(cursor.getInt(idColIndex),cursor.getString(nameColIndex),cursor.getString(extraInfoColIndex),cursor.getInt(powerConsumptionColIndex),cursor.getInt(priorityColIndex),cursor.getInt(tMinColIndex),cursor.getInt(tMaxColIndex)));
             }while (cursor.moveToNext());
         }
         db.close();

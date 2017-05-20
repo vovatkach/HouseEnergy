@@ -271,7 +271,7 @@ public class ObjectiveFunction {
 	}
 
 	/* Метод, який повертає значення пріорітету для ліста наборів. */
-	public double getPriorityOfSuits(final List<Suit> listSuits) {
+	public static double getPriorityOfSuits(final List<Suit> listSuits) {
 		double result = 0;
 		for (Suit suit : listSuits) {
 			result += suit.getPriority();
@@ -280,7 +280,7 @@ public class ObjectiveFunction {
 	}
 
 	/* Метод, який повертає значення спожитої енергії для списку наборів. */
-	public double getCostOfSuits(final List<Suit> listSuits) {
+	public static double getCostOfSuits(final List<Suit> listSuits) {
 		double result = 0;
 		for (Suit suit : listSuits) {
 			result += suit.getCost();

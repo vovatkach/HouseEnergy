@@ -56,12 +56,13 @@ public class RVAdapterSets extends RecyclerView.Adapter<RVAdapterSets.SetViewHol
     }
 
     @Override
-    public void onBindViewHolder(final SetViewHolder holder, int position) {
+    public void onBindViewHolder(final SetViewHolder holder, final int position) {
         holder.tvName.setText(sets.get(position).getName());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(activity, SetOptimizationAct.class);
+                intent.putExtra("setId",sets.get(position).getId());
                 activity.startActivity(intent);
                 activity.overridePendingTransition(R.anim.in_left,R.anim.out_right);
             }

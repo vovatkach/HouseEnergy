@@ -1,5 +1,7 @@
 package com.vovatkach2427gmail.houseenergyoptimization.Model;
 
+import java.util.List;
+
 /**
  * Created by vovat on 16.05.2017.
  */
@@ -7,19 +9,23 @@ package com.vovatkach2427gmail.houseenergyoptimization.Model;
 public class Set {
     private int id;
     private String name;
-    private String listOfDevice;
-    public Set(int id,String name,String listOfDevice)
+    private List<Device> devices;
+    public Set(int id,String name,List<Device> devices)
     {
         this.id=id;
         this.name=name;
-        this.listOfDevice=listOfDevice;
+        this.devices=devices;
     }
 
-    public String getListOfDevice() {
-        return listOfDevice;
+    public List<Device> getListOfDevice() {
+        return devices;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getId() {
+        return id;
     }
 }

@@ -17,4 +17,11 @@
     <string name="Optimization">Оптимізувати</string>
     <string name="UAN">грн</string>
     <string name="change">Змінити</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tariff">Тариф</string>
+    <string name="before3000">До 3000 кВТ</string>
+    <string name="after3000">Після 3000 кВт</string>
+    <string name="limit">Ліміт</string>
 </resources>

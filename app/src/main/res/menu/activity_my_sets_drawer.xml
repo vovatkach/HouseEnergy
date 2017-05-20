@@ -14,5 +14,9 @@
             android:id="@+id/nav_calculator"
             android:icon="@drawable/nav_calculator"
             android:title="@string/calculatorCosts" />
+        <item
+            android:id="@+id/nav_tariff"
+            android:icon="@drawable/nav_tariff"
+            android:title="Тариф" />
     </group>
 </menu>

@@ -22,6 +22,18 @@ public class WelcomeAct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         tvWelcome=(TextView)findViewById(R.id.tvWelcome);
+        //--------------------------------------------------
+
+        SharedPreferences preferences=getSharedPreferences("tariff",MODE_PRIVATE);
+        if(preferences.getInt("isCreated",0)==0)
+        {
+            SharedPreferences.Editor editor=preferences.edit();
+            editor.putInt("isCreated",1);
+            editor.putFloat("costMin",(float) 0.9);
+            editor.putFloat("costMax",(float)1.68);
+            editor.putInt("limit",3000);
+            editor.commit();
+        }
     }
 
     @Override
