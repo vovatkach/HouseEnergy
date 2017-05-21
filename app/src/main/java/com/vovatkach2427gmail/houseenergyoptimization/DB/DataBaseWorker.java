@@ -1,5 +1,6 @@
 package com.vovatkach2427gmail.houseenergyoptimization.DB;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -76,5 +77,17 @@ public class DataBaseWorker {
         }
         db.close();
         return devices;
+    }
+    public void addDevice(Device device)
+    {
+        SQLiteDatabase database=myDataBaseHelper.getWritableDatabase();
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(Contact.TABLE_DEVICE.NAME,device.getName());
+        contentValues.put(Contact.TABLE_DEVICE.EXTRA_INFO,device.getExtraInfo());
+        contentValues.put(Contact.TABLE_DEVICE.POWER_CONSUMPTION,device.getPowerConsumption());
+        contentValues.put(Contact.TABLE_DEVICE.PRIORITY,device.getPriority());
+        contentValues.put(Contact.TABLE_DEVICE.T_MIN,device.gettMin());
+        contentValues.put(Contact.TABLE_DEVICE.T_MAX,device.gettMax());
+        database.insert(Contact.TABLE_DEVICE.TABLE_NAME,null,contentValues);
     }
 }

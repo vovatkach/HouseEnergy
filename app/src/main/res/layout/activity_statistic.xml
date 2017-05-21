@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.vovatkach2427gmail.houseenergyoptimization.Act.BaseAct">
+    tools:context="com.vovatkach2427gmail.houseenergyoptimization.Act.StatisticAct">
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -18,32 +18,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/ivNavBackBaseDevices"
+                android:id="@+id/ivNavBackStatistics"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_back"
                 android:layout_gravity="start"
                 android:layout_margin="5dp"/>
             <TextView
-                android:id="@+id/tvNameBaseDevices"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="18sp"
-                android:text="@string/devices"
+                android:text="Статистика приладів"
                 android:textColor="@color/colorWhite"/>
-            <ImageView
-                android:id="@+id/ivAddDeviceBaseDevices"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_add"
-                android:layout_gravity="end"
-                android:layout_margin="5dp"
-                />
         </FrameLayout>
     </android.support.v7.widget.Toolbar>
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvBaseDevices"
+        android:id="@+id/rvStatistics"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </android.support.v7.widget.RecyclerView>

@@ -131,6 +131,16 @@ public class MySetsAct extends AppCompatActivity
                 startActivity(goToBaseOfDevices);
                 overridePendingTransition(R.anim.in_left,R.anim.out_right);
                 break;
+            case R.id.nav_statistics:
+                Intent goToStatistics=new Intent(MySetsAct.this,StatisticAct.class);
+                startActivity(goToStatistics);
+                overridePendingTransition(R.anim.in_left,R.anim.out_right);
+                break;
+            case R.id.nav_calculator:
+                Intent goToCalculator=new Intent(MySetsAct.this,CalculatorAct.class);
+                startActivity(goToCalculator);
+                overridePendingTransition(R.anim.in_left,R.anim.out_right);
+                break;
 
         }
 

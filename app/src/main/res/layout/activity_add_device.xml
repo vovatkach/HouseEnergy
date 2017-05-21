@@ -1,9 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="com.vovatkach2427gmail.houseenergyoptimization.Act.AddDevice">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:contentInsetEnd="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/ivNavBackAddDeviceToBase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_back"
+                android:layout_gravity="start"
+                android:layout_margin="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:text="@string/addDevice"
+                android:textColor="@color/colorWhite"/>
+        </FrameLayout>
+    </android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nameDevice"
+            android:textSize="16sp"
+            android:layout_weight="1"/>
+        <EditText
+            android:id="@+id/etNameDeviceAddDeviceAct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:maxLines="1"
+            android:textColor="@color/colorWhite"
+            android:layout_weight="2"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/extraInfoAddDevice"
+            android:textSize="16sp"
+            android:layout_weight="1"/>
+        <EditText
+            android:id="@+id/etExtraInfoAddDeviceAct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/colorWhite"
+            android:maxLines="1"
+            android:layout_weight="2"/>
+    </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/tvPowerAddDeviceAct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/power"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:layout_margin="5dp"/>
+    <SeekBar
+        android:id="@+id/sbPowerAddDeviceAct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="2000"
+        android:progress="100"
+        android:layout_margin="5dp"
+        />
+
+    <Button
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:id="@+id/btnAddDeviceToBase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="@string/add"
+        android:textColor="@color/colorWhite"/>
+</LinearLayout>

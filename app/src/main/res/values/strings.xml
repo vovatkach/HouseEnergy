@@ -24,4 +24,12 @@
     <string name="before3000">До 3000 кВТ</string>
     <string name="after3000">Після 3000 кВт</string>
     <string name="limit">Ліміт</string>
+    <string name="addDevice">Додати прилад</string>
+    <string name="devices">Прилади</string>
+    <string name="nameDevice">Ім\'я приладу</string>
+    <string name="extraInfoAddDevice">Додаткова інформація</string>
+    <string name="power">Потужність</string>
+    <string name="add">Додати</string>
+    <string name="alculator">Калькулятор</string>
+    <string name="calc">Рахувати</string>
 </resources>

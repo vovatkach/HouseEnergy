@@ -13,28 +13,23 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.vovatkach2427gmail.houseenergyoptimization.Adapter.RVAdapterDevices;
-import com.vovatkach2427gmail.houseenergyoptimization.Adapter.RVAdapterDevicesOfSet;
+import com.vovatkach2427gmail.houseenergyoptimization.Adapter.RVAdapterStatistics;
 import com.vovatkach2427gmail.houseenergyoptimization.DB.DataBaseWorker;
 import com.vovatkach2427gmail.houseenergyoptimization.Model.Device;
 import com.vovatkach2427gmail.houseenergyoptimization.R;
 
 import java.util.List;
 
-public class BaseAct extends AppCompatActivity {
+public class StatisticAct extends AppCompatActivity {
     ImageView ivNavBack;
-    ImageView ivAddDevice;
-
-    RecyclerView rvBaseDevices;
     List<Device> devices;
-
+    RecyclerView rvDeviceStatistics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
-        ivNavBack=(ImageView)findViewById(R.id.ivNavBackBaseDevices);
-        ivAddDevice=(ImageView)findViewById(R.id.ivAddDeviceBaseDevices);
-        rvBaseDevices=(RecyclerView)findViewById(R.id.rvBaseDevices);
+        setContentView(R.layout.activity_statistic);
+        rvDeviceStatistics=(RecyclerView)findViewById(R.id.rvStatistics);
     }
 
     @Override
@@ -43,22 +38,23 @@ public class BaseAct extends AppCompatActivity {
         Thread thread=new Thread(new Runnable() {
             @Override
             public void run() {
-                DataBaseWorker dataBaseWorker=new DataBaseWorker(BaseAct.this);
+                DataBaseWorker dataBaseWorker=new DataBaseWorker(StatisticAct.this);
                 devices=dataBaseWorker.getAllDevices();
                 dataBaseWorker.close();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(BaseAct.this);
-                        rvBaseDevices.setLayoutManager(layoutManager);
-                        RVAdapterDevices adapterDevices=new RVAdapterDevices(devices);
-                        rvBaseDevices.setAdapter(adapterDevices);
+                        RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(StatisticAct.this);
+                        rvDeviceStatistics.setLayoutManager(layoutManager);
+                        RVAdapterStatistics adapterDevices=new RVAdapterStatistics(devices,StatisticAct.this);
+                        rvDeviceStatistics.setAdapter(adapterDevices);
                     }
                 });
             }
         });
         thread.start();
-        //-------------------------------------------------------------------
+        //-----------------------------------------------------
+        ivNavBack=(ImageView)findViewById(R.id.ivNavBackStatistics);
         ivNavBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,28 +68,7 @@ public class BaseAct extends AppCompatActivity {
                     @Override
                     public void onAnimationEnd(Animator animation) {
                         super.onAnimationEnd(animation);
-                        Intent intent=new Intent(BaseAct.this, MySetsAct.class);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.in_left,R.anim.out_right);
-                    }
-                });
-            }
-        });
-        //-----------------------------------------------------------------------------
-        ivAddDevice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ObjectAnimator animatorX=ObjectAnimator.ofFloat(ivAddDevice,View.SCALE_X,1.0f, 0.85f, 1.15f, 1.0f);
-                ObjectAnimator animatorY=ObjectAnimator.ofFloat(ivAddDevice,View.SCALE_Y,1.0f, 0.85f, 1.15f, 1.0f);
-                AnimatorSet animatorSet=new AnimatorSet();
-                animatorSet.play(animatorX).with(animatorY);
-                animatorSet.setDuration(50);
-                animatorSet.start();
-                animatorSet.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        Intent intent=new Intent(BaseAct.this, AddDevice.class);
+                        Intent intent=new Intent(StatisticAct.this, MySetsAct.class);
                         startActivity(intent);
                         overridePendingTransition(R.anim.in_left,R.anim.out_right);
                     }

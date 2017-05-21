@@ -13,10 +13,10 @@ import com.vovatkach2427gmail.houseenergyoptimization.R;
 import java.util.List;
 
 /**
- * Created by vovat on 17.05.2017.
+ * Created by vovat on 21.05.2017.
  */
 
-public class RVAdapterDevices extends RecyclerView.Adapter<RVAdapterDevices.DevicesOfSetViewHolder> {
+public class RVAdapterDevices extends RecyclerView.Adapter<RVAdapterDevices.DevicesViewHolder>{
     List<Device> devices;
     public RVAdapterDevices(List<Device> devices)
     {
@@ -25,61 +25,37 @@ public class RVAdapterDevices extends RecyclerView.Adapter<RVAdapterDevices.Devi
 
 
 
-    public static class DevicesOfSetViewHolder extends RecyclerView.ViewHolder
+    public static class DevicesViewHolder extends RecyclerView.ViewHolder
     {
         TextView tvDeviceName;
         TextView tvDeviceExtraInfo;
         TextView tvPower;
         SeekBar sbPower;
-        TextView tvTmin;
-        SeekBar sbTmin;
-        TextView tvTmax;
-        SeekBar sbTmax;
-        TextView tvPriority;
-        SeekBar sbPriority;
 
-        public DevicesOfSetViewHolder(View itemView) {
+        public DevicesViewHolder(View itemView) {
             super(itemView);
-            tvDeviceName=(TextView)itemView.findViewById(R.id.tvDeviceNameItemDevice);
-            tvDeviceExtraInfo=(TextView)itemView.findViewById(R.id.tvExtraInfoItemDevice);
+            tvDeviceName=(TextView)itemView.findViewById(R.id.tvDeviceName);
+            tvDeviceExtraInfo=(TextView)itemView.findViewById(R.id.tvExtraInfoDevice);
 
-            tvPower=(TextView)itemView.findViewById(R.id.tvPowerItemDevice);
-            sbPower=(SeekBar)itemView.findViewById(R.id.sbPowerItemDevice);
-
-            tvTmin=(TextView)itemView.findViewById(R.id.tvMinTimeOfWorkItemDevice);
-            sbTmin=(SeekBar)itemView.findViewById(R.id.sbMinTimeOfWorkItemDevice);
-
-            tvTmax=(TextView)itemView.findViewById(R.id.tvMaxTimeOfWorkItemDevice);
-            sbTmax=(SeekBar)itemView.findViewById(R.id.sbMaxTimeOfWorkItemDevice);
-
-            tvPriority=(TextView)itemView.findViewById(R.id.tvPriorityItemDevice);
-            sbPriority=(SeekBar)itemView.findViewById(R.id.sbPriorityItemDevice);
+            tvPower=(TextView)itemView.findViewById(R.id.tvPowerDevice);
+            sbPower=(SeekBar)itemView.findViewById(R.id.sbPowerDevice);
         }
     }
 
     @Override
-    public DevicesOfSetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RVAdapterDevices.DevicesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_device, parent, false);
-        DevicesOfSetViewHolder pvh = new DevicesOfSetViewHolder(v);
+        RVAdapterDevices.DevicesViewHolder pvh = new RVAdapterDevices.DevicesViewHolder(v);
         return pvh;
     }
 
     @Override
-    public void onBindViewHolder(DevicesOfSetViewHolder holder, int position) {
+    public void onBindViewHolder(RVAdapterDevices.DevicesViewHolder holder, int position) {
         holder.tvDeviceName.setText(devices.get(position).getName());
         holder.tvDeviceExtraInfo.setText(devices.get(position).getExtraInfo());
 
         holder.tvPower.setText("Потужність приладу "+Integer.toString(devices.get(position).getPowerConsumption())+"ВТ");
         holder.sbPower.setProgress(devices.get(position).getPowerConsumption());
-
-        holder.tvTmin.setText("Час роботи(мінімальний) "+Integer.toString(devices.get(position).gettMin())+" годин");
-        holder.sbTmin.setProgress(devices.get(position).gettMin());
-
-        holder.tvTmax.setText("Час роботи(максимальний) "+Integer.toString(devices.get(position).gettMax())+" годин");
-        holder.sbTmax.setProgress(devices.get(position).gettMax());
-
-        holder.tvPriority.setText("Пріоритет приладу "+Integer.toString(devices.get(position).getPriority())+"");
-        holder.sbPriority.setProgress(devices.get(position).getPriority());
     }
 
     @Override
@@ -92,3 +68,4 @@ public class RVAdapterDevices extends RecyclerView.Adapter<RVAdapterDevices.Devi
         super.onAttachedToRecyclerView(recyclerView);
     }
 }
+

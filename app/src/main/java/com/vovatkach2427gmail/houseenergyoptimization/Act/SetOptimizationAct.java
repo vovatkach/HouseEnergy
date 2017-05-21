@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.vovatkach2427gmail.houseenergyoptimization.Adapter.RVAdapterDevices;
+import com.vovatkach2427gmail.houseenergyoptimization.Adapter.RVAdapterDevicesOfSet;
 import com.vovatkach2427gmail.houseenergyoptimization.DB.DataBaseWorker;
 import com.vovatkach2427gmail.houseenergyoptimization.Model.Set;
 import com.vovatkach2427gmail.houseenergyoptimization.R;
@@ -24,7 +24,7 @@ import com.vovatkach2427gmail.houseenergyoptimization.R;
 public class SetOptimizationAct extends AppCompatActivity {
     RecyclerView rvDevices;
     RecyclerView.LayoutManager layoutManager;
-    RVAdapterDevices adapter;
+    RVAdapterDevicesOfSet adapter;
     Set set;
     Button btnGoOptimization;
     EditText etCost;
@@ -52,7 +52,7 @@ public class SetOptimizationAct extends AppCompatActivity {
         super.onResume();
         layoutManager=new LinearLayoutManager(SetOptimizationAct.this);
         rvDevices.setLayoutManager(layoutManager);
-        adapter=new RVAdapterDevices(set.getListOfDevice());
+        adapter=new RVAdapterDevicesOfSet(set.getListOfDevice());
         rvDevices.setAdapter(adapter);
         //---------------------------------------
         btnGoOptimization.setOnClickListener(new View.OnClickListener() {
