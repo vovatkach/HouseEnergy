@@ -126,6 +126,12 @@ public class MySetsAct extends AppCompatActivity
                 startActivity(goToTariffAct);
                 overridePendingTransition(R.anim.in_left,R.anim.out_right);
                 break;
+            case  R.id.nav_base:
+                Intent goToBaseOfDevices=new Intent(MySetsAct.this,BaseAct.class);
+                startActivity(goToBaseOfDevices);
+                overridePendingTransition(R.anim.in_left,R.anim.out_right);
+                break;
+
         }
 
 

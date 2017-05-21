@@ -16,9 +16,9 @@ import java.util.List;
  * Created by vovat on 17.05.2017.
  */
 
-public class RVAdapterDevicesOfSet extends RecyclerView.Adapter<RVAdapterDevicesOfSet.DevicesOfSetViewHolder> {
+public class RVAdapterDevices extends RecyclerView.Adapter<RVAdapterDevices.DevicesOfSetViewHolder> {
     List<Device> devices;
-    public  RVAdapterDevicesOfSet(List<Device> devices)
+    public RVAdapterDevices(List<Device> devices)
     {
         this.devices=devices;
     }
@@ -59,7 +59,7 @@ public class RVAdapterDevicesOfSet extends RecyclerView.Adapter<RVAdapterDevices
 
     @Override
     public DevicesOfSetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_device_of_set, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_device, parent, false);
         DevicesOfSetViewHolder pvh = new DevicesOfSetViewHolder(v);
         return pvh;
     }
