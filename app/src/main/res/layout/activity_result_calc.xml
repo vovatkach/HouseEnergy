@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.vovatkach2427gmail.houseenergyoptimization.Act.CalculatorAct">
+    tools:context="com.vovatkach2427gmail.houseenergyoptimization.Act.ResultCalcActivity">
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/ivNavBackCalculator"
+                android:id="@+id/ivNavBackResultCalc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_back"
@@ -29,33 +29,34 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="18sp"
-                android:text="@string/alculator"
+                android:text="@string/result"
                 android:textColor="@color/colorWhite"/>
         </FrameLayout>
     </android.support.v7.widget.Toolbar>
-    <LinearLayout
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark">
+    <TextView
+        android:id="@+id/tvCostOfCacl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="0 вибрано"
-            android:layout_margin="5dp"/>
+        android:layout_margin="5dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp" />
 
-        <Button
-            android:id="@+id/btnCalc"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/calc"
-            android:textSize="18sp"
-            android:textColor="@color/colorWhite"/>
-    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Вибрані прилади"
+        android:textAlignment="center"
+        android:textSize="16sp" />
+</LinearLayout>
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvCalculator"
+        android:id="@+id/rvResultCalc"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </android.support.v7.widget.RecyclerView>

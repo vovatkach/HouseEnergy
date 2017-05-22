@@ -49,10 +49,10 @@
                 android:layout_margin="4dp"
                 android:textSize="14sp" />
             <SeekBar
-                android:id="@+id/sbPowerItemDevice"
+                android:id="@+id/sbPowerCalc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:max="1000"
+                android:max="10000"
                 android:layout_margin="4dp"/>
             <TextView
                 android:id="@+id/tvTimeOfWorkingCalc"
@@ -68,13 +68,14 @@
                 android:layout_height="wrap_content"
                 android:max="24"
                 android:layout_margin="4dp"/>
+
             <Button
                 android:id="@+id/btnAddToListCalc"
-                style="@style/Widget.AppCompat.Button.Colored"
+                style="@style/Widget.AppCompat.Button.Small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/add"
-                android:textColor="@color/colorWhite"/>
+                android:textColor="@color/colorWhite" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 

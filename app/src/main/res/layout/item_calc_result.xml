@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <android.support.v7.widget.CardView
-        android:id="@+id/cardDeviceForStatistics"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/colorPrimary"
@@ -22,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/tvDeviceNameStatistics"
+                    android:id="@+id/tvDeviceNameCalcResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorWhite"
@@ -31,7 +30,7 @@
                     android:layout_weight="2"
                     />
                 <TextView
-                    android:id="@+id/tvExtraInfoDeviceStatistics"
+                    android:id="@+id/tvExtraInfoCalcResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorGrey"
@@ -41,49 +40,20 @@
                     />
             </LinearLayout>
             <TextView
-                android:id="@+id/tvPowerDeviceStatistics"
+                android:id="@+id/tvPowerCalcResult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorGrey"
                 android:layout_margin="4dp"
                 android:textSize="14sp" />
-            <SeekBar
-                android:id="@+id/sbProgressStatistics"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="10000"
-                />
-
             <TextView
-                android:id="@+id/tvTariffBeforeLimitStatistics"
+                android:id="@+id/tvTimeOfWorkingCalcResult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
                 android:textAlignment="center"
-                android:textSize="14sp" />
-            <TextView
-                android:id="@+id/tvCostForHourBeforeLimitStatistics"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/colorWhite"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/tvTariffAfterLimitStatistics"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:textAlignment="center"
-                android:textSize="14sp" />
-            <TextView
-                android:id="@+id/tvCostForHourAfterLimitStatistics"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/colorWhite"
-                android:textAlignment="center" />
+                android:textColor="@color/colorGrey"
+                android:layout_margin="4dp"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
