@@ -54,16 +54,15 @@
            android:layout_margin="5dp"
            android:layout_weight="1"/>
 
-        <EditText
-            android:id="@+id/etCostOfOptimization"
+        <TextView
+            android:id="@+id/tvCostOfOptimization"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:inputType="number"
+            android:text="30"
             android:textColor="@color/colorWhite"
-            android:textSize="18sp"
-            android:maxLength="6"/>
+            android:textSize="18sp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,6 +72,10 @@
             android:layout_margin="5dp"
             android:layout_weight="1"/>
     </LinearLayout>
+    <SeekBar
+        android:id="@+id/sbCostOfOptimization"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <Button
         style="@style/Widget.AppCompat.Button.Colored"
         android:id="@+id/btnGoOptimization"

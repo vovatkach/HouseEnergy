@@ -33,4 +33,7 @@
     <string name="alculator">Калькулятор</string>
     <string name="calc">Рахувати</string>
     <string name="result">Результати</string>
+    <string name="addSet">Додати набір</string>
+    <string name="nameOfSet">Ім\'я набору</string>
+    <string name="chouseDevive">Виберіть прилади</string>
 </resources>

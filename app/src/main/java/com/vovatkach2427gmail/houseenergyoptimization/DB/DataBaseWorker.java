@@ -90,4 +90,12 @@ public class DataBaseWorker {
         contentValues.put(Contact.TABLE_DEVICE.T_MAX,device.gettMax());
         database.insert(Contact.TABLE_DEVICE.TABLE_NAME,null,contentValues);
     }
+    public void addSet(Set set)
+    {
+        SQLiteDatabase database=myDataBaseHelper.getWritableDatabase();
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(Contact.TABLE_SET.NAME,set.getName());
+        contentValues.put(Contact.TABLE_SET.LIST_OF_DEVICE,Translator.listOfDevivesToJson(set.getListOfDevice()));
+        database.insert(Contact.TABLE_SET.TABLE_NAME,null,contentValues);
+    }
 }

@@ -1,5 +1,6 @@
 package com.vovatkach2427gmail.houseenergyoptimization.Adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.vovatkach2427gmail.houseenergyoptimization.Model.Device;
 import com.vovatkach2427gmail.houseenergyoptimization.R;
@@ -15,19 +17,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by vovat on 17.05.2017.
+ * Created by vovat on 22.05.2017.
  */
 
-public class RVAdapterDevicesOfSet extends RecyclerView.Adapter<RVAdapterDevicesOfSet.DevicesOfSetViewHolder> {
+public class RVAdapterDevivesAddSetAct extends RecyclerView.Adapter<RVAdapterDevivesAddSetAct.DevicesAddSetViewHolder> {
     List<Device> devices;
-    public RVAdapterDevicesOfSet(List<Device> devices)
+    List<Device> choouseDevices;
+    Context context;
+    public RVAdapterDevivesAddSetAct(List<Device> devices,Context context)
     {
         this.devices=devices;
+        this.choouseDevices=new ArrayList<>();
+        this.context=context;
     }
 
-
-
-    public static class DevicesOfSetViewHolder extends RecyclerView.ViewHolder
+    public static class DevicesAddSetViewHolder extends RecyclerView.ViewHolder
     {
         TextView tvDeviceName;
         TextView tvDeviceExtraInfo;
@@ -40,37 +44,38 @@ public class RVAdapterDevicesOfSet extends RecyclerView.Adapter<RVAdapterDevices
         TextView tvPriority;
         SeekBar sbPriority;
 
+        Button btnAddToSet;
 
-
-        public DevicesOfSetViewHolder(View itemView) {
+        public DevicesAddSetViewHolder(View itemView) {
             super(itemView);
-            tvDeviceName=(TextView)itemView.findViewById(R.id.tvDeviceNameItemDevice);
-            tvDeviceExtraInfo=(TextView)itemView.findViewById(R.id.tvExtraInfoItemDevice);
+            tvDeviceName=(TextView)itemView.findViewById(R.id.tvDeviceNameAddSetAct);
+            tvDeviceExtraInfo=(TextView)itemView.findViewById(R.id.tvExtraInfoAddSetAct);
 
-            tvPower=(TextView)itemView.findViewById(R.id.tvPowerItemDevice);
-            sbPower=(SeekBar)itemView.findViewById(R.id.sbPowerItemDevice);
+            tvPower=(TextView)itemView.findViewById(R.id.tvPowerItemDeviceAddSetAct);
+            sbPower=(SeekBar)itemView.findViewById(R.id.sbPowerItemDeviceAddSetAct);
 
-            tvTmin=(TextView)itemView.findViewById(R.id.tvMinTimeOfWorkItemDevice);
-            sbTmin=(SeekBar)itemView.findViewById(R.id.sbMinTimeOfWorkItemDevice);
+            tvTmin=(TextView)itemView.findViewById(R.id.tvMinTimeOfWorkItemDeviceAddSetAct);
+            sbTmin=(SeekBar)itemView.findViewById(R.id.sbMinTimeOfWorkItemDeviceAddSetAct);
 
-            tvTmax=(TextView)itemView.findViewById(R.id.tvMaxTimeOfWorkItemDevice);
-            sbTmax=(SeekBar)itemView.findViewById(R.id.sbMaxTimeOfWorkItemDevice);
+            tvTmax=(TextView)itemView.findViewById(R.id.tvMaxTimeOfWorkItemDeviceAddSetAct);
+            sbTmax=(SeekBar)itemView.findViewById(R.id.sbMaxTimeOfWorkItemDeviceAddSetAct);
 
-            tvPriority=(TextView)itemView.findViewById(R.id.tvPriorityItemDevice);
-            sbPriority=(SeekBar)itemView.findViewById(R.id.sbPriorityItemDevice);
+            tvPriority=(TextView)itemView.findViewById(R.id.tvPriorityItemDeviceAddSetAct);
+            sbPriority=(SeekBar)itemView.findViewById(R.id.sbPriorityItemDeviceAddSetAct);
 
+            btnAddToSet=(Button)itemView.findViewById(R.id.btnAddDeviceAddSetAct);
         }
     }
 
     @Override
-    public DevicesOfSetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_device_of_set, parent, false);
-        DevicesOfSetViewHolder pvh = new DevicesOfSetViewHolder(v);
+    public RVAdapterDevivesAddSetAct.DevicesAddSetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_device_of_add_set, parent, false);
+        RVAdapterDevivesAddSetAct.DevicesAddSetViewHolder pvh = new  RVAdapterDevivesAddSetAct.DevicesAddSetViewHolder(v);
         return pvh;
     }
 
     @Override
-    public void onBindViewHolder(final DevicesOfSetViewHolder holder, final int position) {
+    public void onBindViewHolder(final RVAdapterDevivesAddSetAct.DevicesAddSetViewHolder holder, final int position) {
         holder.tvDeviceName.setText(devices.get(position).getName());
         holder.tvDeviceExtraInfo.setText(devices.get(position).getExtraInfo());
 
@@ -85,11 +90,13 @@ public class RVAdapterDevicesOfSet extends RecyclerView.Adapter<RVAdapterDevices
 
         holder.tvPriority.setText("Пріоритет приладу "+Integer.toString(devices.get(position).getPriority())+"");
         holder.sbPriority.setProgress(devices.get(position).getPriority());
+
         //------------------------------------------------------------------------
         holder.sbPower.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 holder.tvPower.setText("Потужність приладу "+progress+"ВТ");
+                devices.get(position).setPowerConsumption(progress);
             }
 
             @Override
@@ -107,6 +114,7 @@ public class RVAdapterDevicesOfSet extends RecyclerView.Adapter<RVAdapterDevices
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 holder.tvTmin.setText("Час роботи(мінімальний) "+progress+" годин");
+                devices.get(position).settMin(progress);
             }
 
             @Override
@@ -124,6 +132,7 @@ public class RVAdapterDevicesOfSet extends RecyclerView.Adapter<RVAdapterDevices
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 holder.tvTmax.setText("Час роботи(максимальний) "+progress+" годин");
+                devices.get(position).settMax(progress);
             }
 
             @Override
@@ -141,6 +150,7 @@ public class RVAdapterDevicesOfSet extends RecyclerView.Adapter<RVAdapterDevices
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 holder.tvPriority.setText("Пріоритет приладу "+progress+"");
+                devices.get(position).setPriority(progress);
             }
 
             @Override
@@ -153,7 +163,15 @@ public class RVAdapterDevicesOfSet extends RecyclerView.Adapter<RVAdapterDevices
 
             }
         });
-
+        //--------------------------------------------------------------------------------------
+        holder.btnAddToSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choouseDevices.add(devices.get(position));
+                Toast toast=Toast.makeText(context,"Прилаж додано",Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
     }
 
     @Override
@@ -165,6 +183,13 @@ public class RVAdapterDevicesOfSet extends RecyclerView.Adapter<RVAdapterDevices
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
-    //-----------------------------------------------------------------------------------------
-
+    public List<Device> getChoouseDevices()
+    {
+        return choouseDevices;
+    }
+    public void clearChooseDevice()
+    {
+       choouseDevices.clear();
+    }
 }
+

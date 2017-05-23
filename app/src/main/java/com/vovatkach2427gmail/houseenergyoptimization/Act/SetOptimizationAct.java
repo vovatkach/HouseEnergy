@@ -9,15 +9,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vovatkach2427gmail.houseenergyoptimization.Adapter.RVAdapterDevicesOfSet;
 import com.vovatkach2427gmail.houseenergyoptimization.DB.DataBaseWorker;
+import com.vovatkach2427gmail.houseenergyoptimization.Model.Device;
 import com.vovatkach2427gmail.houseenergyoptimization.Model.Set;
 import com.vovatkach2427gmail.houseenergyoptimization.R;
 
@@ -27,16 +30,21 @@ public class SetOptimizationAct extends AppCompatActivity {
     RVAdapterDevicesOfSet adapter;
     Set set;
     Button btnGoOptimization;
-    EditText etCost;
+    TextView tvCost;
     ImageView ivNavBack;
+    SeekBar sbCost;
+
+    int costMin;
+    int costMax;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_optimization);
         rvDevices=(RecyclerView)findViewById(R.id.rvCertainSet);
         btnGoOptimization=(Button)findViewById(R.id.btnGoOptimization);
-        etCost=(EditText)findViewById(R.id.etCostOfOptimization);
+        tvCost =(TextView) findViewById(R.id.tvCostOfOptimization);
         ivNavBack =(ImageView)findViewById(R.id.ivNavBackSetOptimizationAct);
+        sbCost=(SeekBar)findViewById(R.id.sbCostOfOptimization);
         //-------------
         Intent intent=getIntent();
         DataBaseWorker dataBaseWorker=new DataBaseWorker(SetOptimizationAct.this);
@@ -54,18 +62,31 @@ public class SetOptimizationAct extends AppCompatActivity {
         rvDevices.setLayoutManager(layoutManager);
         adapter=new RVAdapterDevicesOfSet(set.getListOfDevice());
         rvDevices.setAdapter(adapter);
+        costMin=1;
+        costMax=0;
+        for (Device device:set.getListOfDevice())
+        {
+            float power=(float) device.getPowerConsumption()/1000;
+            costMin+=power*device.gettMin()*31*0.9;
+            costMax+=power*device.gettMax()*31*0.9;
+        }
+        Log.d("myLog",Integer.toString(costMin));
+        Log.d("myLog",Integer.toString(costMax));
+        sbCost.setMax(costMax-costMin);
+        sbCost.setProgress((costMax-costMin)/2);
+        tvCost.setText(Integer.toString(sbCost.getProgress()));
         //---------------------------------------
         btnGoOptimization.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(etCost.getText().toString().equals(""))
+                if(tvCost.getText().toString().equals(""))
                 {
                     Toast toast=Toast.makeText(SetOptimizationAct.this,"Введіть суму для оптимізації",Toast.LENGTH_SHORT);
                     toast.show();
                 }else
                     {
                     Intent intent = new Intent(SetOptimizationAct.this, OptimizationResultAct.class);
-                        intent.putExtra("Cost",Integer.parseInt(etCost.getText().toString()));
+                        intent.putExtra("Cost",Integer.parseInt(tvCost.getText().toString()));
                         intent.putExtra("setId",set.getId());
                     startActivity(intent);
                     overridePendingTransition(R.anim.in_left, R.anim.out_right);
@@ -91,6 +112,23 @@ public class SetOptimizationAct extends AppCompatActivity {
                         overridePendingTransition(R.anim.in_left,R.anim.out_right);
                     }
                 });
+            }
+        });
+        //----------------------------------------
+        sbCost.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                tvCost.setText(Integer.toString(costMin+progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
     }
