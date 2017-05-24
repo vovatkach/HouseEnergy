@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -62,16 +63,41 @@ public class SetOptimizationAct extends AppCompatActivity {
         rvDevices.setLayoutManager(layoutManager);
         adapter=new RVAdapterDevicesOfSet(set.getListOfDevice());
         rvDevices.setAdapter(adapter);
+        //------------------------------------------------------
+        SharedPreferences preferences=getSharedPreferences("tariff",MODE_PRIVATE);
+        float minCost=preferences.getFloat("costMin",(float) 0.9);
+        float maxCost=preferences.getFloat("costMax",(float)1.68);
+        int limit=preferences.getInt("limit",3000);
+        //------------------------------------------------------
+        int allPowerMin=0;
+        int allPowerMax=0;
+        for(Device device:set.getListOfDevice())
+        {
+            float power=(float) device.getPowerConsumption()/1000;
+            allPowerMin+=power*device.gettMin()*31;
+            allPowerMax+=power*device.gettMax()*31;
+        }
+        //------------------------------------------------------
         costMin=1;
         costMax=0;
         for (Device device:set.getListOfDevice())
         {
             float power=(float) device.getPowerConsumption()/1000;
-            costMin+=power*device.gettMin()*31*0.9;
-            costMax+=power*device.gettMax()*31*0.9;
+            if(allPowerMin<=limit)
+            {
+                costMin+=power*device.gettMin()*31*minCost;
+            }else
+                {
+                    costMin+=power*device.gettMin()*31*maxCost;
+                }
+           if (allPowerMax<=limit)
+           {
+               costMax+=power*device.gettMax()*31*minCost;
+           }else
+               {
+                   costMax+=power*device.gettMax()*31*maxCost;
+               }
         }
-        Log.d("myLog",Integer.toString(costMin));
-        Log.d("myLog",Integer.toString(costMax));
         sbCost.setMax(costMax-costMin);
         sbCost.setProgress((costMax-costMin)/2);
         tvCost.setText(Integer.toString(sbCost.getProgress()));
